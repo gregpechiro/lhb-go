@@ -41,7 +41,7 @@ div.navbar-collapse ul.nav li>a:hover {
 }
 body {
     /*background-color: #FBF3D3;*/
-    background-image: url(../images/marble.png);
+    background-image: url(../img/marble.png);
     /*background: radial-gradient(ellipse at center, #e4d9c6 0%, #d6c6aa 50%, #c9b38e 100%);*/
     color: black
 }
