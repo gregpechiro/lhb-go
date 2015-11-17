@@ -99,11 +99,11 @@ var uploadImage = web.Route{"GET", "/upload", func(w http.ResponseWriter, r *htt
 	}
 	defer f.Close()
 	io.Copy(f, file)
-	doc := map[string]interface{}{
+	/*doc := map[string]interface{}{
 		"category":
 		"description":
 		"src":
-	}
+	}*/
 
 }}
 
