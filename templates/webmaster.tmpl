@@ -11,42 +11,6 @@
 		</style>
 	</head>
 	<body>
-		<!--
-		<?php
-		ini_set('display_errors',1);
-		error_reporting(E_ALL);
-		// server variables
-		$server = "localhost";
-		$user = "root";
-		$pass = "root";
-		$db_name = "lhb_db";
-		// connect to server
-		$conn = new mysqli($server, $user, $pass, $db_name);
-
-		// check connection
-		if ($conn->connect_error) {
-			die("connection failed: " . $conn->connect_error);
-		}
-
-		$imageQuery = "SELECT * FROM images";
-		$images = $conn->query($imageQuery);
-
-		$categoryQuery = "SELECT DISTINCT category  FROM images";
-		$categories = $conn->query($categoryQuery);
-
-		$slideQuery = "SELECT * FROM slide WHERE id=1";
-		$slideResult = $conn->query($slideQuery);
-		$slide = $slideResult->fetch_assoc();
-
-		if (isset($_GET["id"])) {
-			$imgQuery = "SELECT * FROM images WHERE id=" . $_GET["id"];
-			$imgResult = $conn->query($imgQuery);
-			$img = $imgResult->fetch_assoc();
-		}
-
-		$conn->close();
-		?>
-		 -->
 		<div class="container-fluid">
 
 			{{ template "admin-nav" . }}
@@ -55,64 +19,13 @@
 				<div style="padding:0"  class="col-md-4 col-xs-12 text-black">
 					<div class="col-md-12 col-sm-6">
 						<div style="border:1px solid #532d3a" class="panel">
-							<div style="background-color:#532d3a; color:white;" class="panel-heading">Gallery</div>
+							<div style="background-color:#532d3a; color:white;" class="panel-heading clearfix">
+								Gallery
+								<a href="/webmaster" class="pull-right" style="color:white;">Cancel</a>
+							</div>
 							<div class="panel-body">
-								<!--
-								<?php
-								if (isset($_GET["id"])) {
-									echo '<form action="save-image.php" method="post" class="form-horizontal" enctype="multipart/form-data">
-											<div class="form-group">
-												<label class="control-label col-lg-3 col-md-4 col-sm-3 col-xs-4">Description:</label>
-												<div class="col-lg-9 col-md-8 col-sm-9 col-xs-8">
-													<input class="form-control" type="text" name="description" id="description" value="' . $img["description"] . '">
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="control-label col-xs-3">Category:</label>
-												<div class="col-xs-9">
-													<input type="text" class="form-control" name="category" id="category" value="' . $img["category"] . '">
-												</div>
-											</div>
-											<input type="hidden" name="id" id="id" value="' . $img["id"] . '">
-											<div class="form-group">
-												<div class="col-xs-12">
-													<button class="btn btn-primary btn-block">Save</button>
-												</div>
-											</div>
-										</form>
-										<form class="form-horizontal" action="delete-image.php" method="post">
-											<input type="hidden" name="source" id="source" value="' . $img["source"] . '">
-											<input type="hidden" name="id" id="id" value="' . $img["id"] . '">
-											<button class="btn btn-danger btn-block">Delete</button>
-										</form>';
-								} else {
-									echo '<form action="upload-image.php" method="post" class="form-horizontal" enctype="multipart/form-data">
-											<div class="form-group">
-												<div class="col-xs-12">
-													<label class="btn btn-default btn-block uploader" for="file">Select File</label>
-													<input class="uploader" id="file" type="file" name="picture" required>
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="control-label col-lg-3 col-md-4 col-sm-3 col-xs-4">Description:</label>
-												<div class="col-lg-9 col-md-8 col-sm-9 col-xs-8">
-													<input class="form-control" type="text" name="description" id="description">
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="control-label col-xs-3">Category:</label>
-												<div class="col-xs-9">
-													<input type="text" class="form-control" name="category" id="category">
-												</div>
-											</div>
-				    						<button class="btn btn-dark btn-block">Upload</button>
-										</form>';
-								}
-								?>
-								 -->
 								{{ if .image }}
-
-									<form action="save-image.php" method="post" class="form-horizontal" enctype="multipart/form-data">
+									<form action="/save-image/{{ .image.Id }}" method="post" class="form-horizontal">
 										<div class="form-group">
 											<label class="control-label col-lg-3 col-md-4 col-sm-3 col-xs-4">Description:</label>
 											<div class="col-lg-9 col-md-8 col-sm-9 col-xs-8">
@@ -132,12 +45,7 @@
 											</div>
 										</div>
 									</form>
-									<form class="form-horizontal" action="delete-image.php" method="post">
-										<input type="hidden" name="source" id="source" value="' . $img["source"] . '">
-										<input type="hidden" name="id" id="id" value="' . $img["id"] . '">
-										<button class="btn btn-danger btn-block">Delete</button>
-									</form>
-
+									<a href="#" data-delete="/webmaster/{{ .image.Id }}" data-message="Are you sure you would like to permanently delete this image?" class="btn btn-danger btn-block delete-button">Delete</a>
 								{{ else }}
 									<form action="/upload-image" method="post" class="form-horizontal" enctype="multipart/form-data">
 										<div class="form-group">
@@ -165,34 +73,6 @@
 							</div>
 						</div>
 					</div>
-					<!--
-					<div class="col-md-12 col-sm-6">
-						<div style="border:1px solid #532d3a" class="panel">
-							<div style="background-color:#532d3a; color:white;" class="panel-heading">Slide #4 Text</div>
-							<div class="panel-body">
-								<form class="form-horizontal" action="slide.php" method="post">
-									<div class="form-group">
-										<label class="control-label col-xs-2" style="align:left;">Title:</label>
-										<div class="col-xs-10">
-
-											<?php echo '<input class="form-control" type="text" name="title" value="' . $slide["title"] .' ">'?>
-
-										</div>
-									</div>
-									<div class="col-xs-12">
-										<div class="form-group">
-											<label>Body:</label>
-
-											<?php echo '<textarea name="body" rows="3" style="resize:none;" class="form-control">' . $slide["body"] . '</textarea>' ?>
-
-										</div>
-									</div>
-									<button class="btn btn-dark btn-block">Save</button>
-								</form>
-							</div>
-						</div>
-					</div>
-					 -->
 				</div>
 				<!-- <div class="col-lg-4 text-black">
 				</div> -->
@@ -219,36 +99,21 @@
 						{{ range $image := .images }}
 							<div class="col-lg-3 col-md-3 col-sm-3 item {{ $image.Data.category }}">
 								<a href="/webmaster/{{ $image.Id }}">
-									<img style="margin-bottom:10px" class="img-responsive" src="/static/img/upload/{{ $image.Data.src }}" alt="img">
+									<img style="margin-bottom:10px" class="img-responsive" src="/static/img/upload/{{ $image.Data.source }}" alt="img">
 								</a>
 							</div>
 						{{ end }}
-						<!--
-						<?php
-						if ($images->num_rows > 0) {
-							while($image = $images->fetch_assoc()) {
-								echo '<div class="col-lg-3 col-md-3 col-sm-3 item ' . strtolower($image["category"]) . '">
-										<a href="webmaster.php?id=' . $image["id"] . '">
-											<img style="margin-bottom:10px" class="img-responsive" src="' . $image["source"] . '" alt="img">
-										</a>
-									</div>';
-							}
-						}
-						?>
-						 -->
 					</div>
 				</div>
 			</div>
 		</div>
-		<!--
-		<?php include 'stubs/login.php'; ?>
-		 -->
 		<script src="//code.jquery.com/jquery-2.1.4.min.js" charset="utf-8"></script>
 		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.1/isotope.pkgd.min.js"></script>
 		<script src="/static/js/nav.js" charset="utf-8"></script>
 		<script src="/static/js/login.js" charset="utf-8"></script>
 		<script src="/static/js/gallery.js" charset="utf-8"></script>
+		<script src="/static/js/delete.js" charset="utf-8"></script>
 		<script>
 			function updateFileInfo(e) {
 				var t = e.value;

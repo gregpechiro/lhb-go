@@ -17,7 +17,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li><a href="/webmaster"> Webmaster </a></li>
-                    <li><a href="/all-Listings"> Listings </a></li>
+                    <li><a href="/all-listings"> Listings </a></li>
                     <li><a id="cancel" href="/logout"> Logout </a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
@@ -30,6 +30,7 @@
             <form id="deleteForm" action="" method="post" class="col-lg-2">
                 <button id="delete" class="btn btn-danger btn-sm">Yes</button>
                 <a id="deleteCancel" class="btn btn-default btn-sm">No</a>
+                <input type="hidden" name="_csrf" value="{{ ._csrf }}">
             </form>
             <span id="message"></span>
         </div>
