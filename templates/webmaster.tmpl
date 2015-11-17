@@ -113,7 +113,7 @@
 								{{ if .image }}
 
 								{{ else }}
-									<form action="upload-image.php" method="post" class="form-horizontal" enctype="multipart/form-data">
+									<form action="/upload-image" method="post" class="form-horizontal" enctype="multipart/form-data">
 										<div class="form-group">
 											<div class="col-xs-12">
 												<label class="btn btn-default btn-block uploader" for="file">Select File</label>
@@ -132,6 +132,7 @@
 												<input type="text" class="form-control" name="category" id="category">
 											</div>
 										</div>
+										<input type="hidden" name="_csrf" value="{{ ._csrf }}">
 										<button class="btn btn-dark btn-block">Upload</button>
 									</form>
 								{{ end }}
