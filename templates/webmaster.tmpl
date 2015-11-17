@@ -112,6 +112,32 @@
 								 -->
 								{{ if .image }}
 
+									<form action="save-image.php" method="post" class="form-horizontal" enctype="multipart/form-data">
+										<div class="form-group">
+											<label class="control-label col-lg-3 col-md-4 col-sm-3 col-xs-4">Description:</label>
+											<div class="col-lg-9 col-md-8 col-sm-9 col-xs-8">
+												<input class="form-control" type="text" name="description" id="description" value="{{ .image.Data.description }}">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-xs-3">Category:</label>
+											<div class="col-xs-9">
+												<input type="text" class="form-control" name="category" id="category" value="{{ .image.Data.category }}">
+											</div>
+										</div>
+										<input type="hidden" name="id" id="id" value="{{ .image.Data.id }}">
+										<div class="form-group">
+											<div class="col-xs-12">
+												<button class="btn btn-primary btn-block">Save</button>
+											</div>
+										</div>
+									</form>
+									<form class="form-horizontal" action="delete-image.php" method="post">
+										<input type="hidden" name="source" id="source" value="' . $img["source"] . '">
+										<input type="hidden" name="id" id="id" value="' . $img["id"] . '">
+										<button class="btn btn-danger btn-block">Delete</button>
+									</form>
+
 								{{ else }}
 									<form action="/upload-image" method="post" class="form-horizontal" enctype="multipart/form-data">
 										<div class="form-group">
@@ -191,9 +217,9 @@
 				<div class="col-md-8 col-xs-12">
 					<div class="isotope">
 						{{ range $image := .images }}
-							<div class="col-lg-3 col-md-3 col-sm-3 item {{ $image.data.category }}">
-								<a href="webmaster.php?id={{ $image.id }}">
-									<img style="margin-bottom:10px" class="img-responsive" src="{{ $image.data.source }}" alt="img">
+							<div class="col-lg-3 col-md-3 col-sm-3 item {{ $image.Data.category }}">
+								<a href="/webmaster/{{ $image.Id }}">
+									<img style="margin-bottom:10px" class="img-responsive" src="/static/img/upload/{{ $image.Data.src }}" alt="img">
 								</a>
 							</div>
 						{{ end }}
