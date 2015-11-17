@@ -40,7 +40,9 @@ div.navbar-collapse ul.nav li>a:hover {
     text-align:;
 }
 body {
-    background: radial-gradient(ellipse at center, #d5ba8b 0%, #d1b37f 50%, #bca172 100%);
+    /*background-color: #FBF3D3;*/
+    background-image: url(../images/marble.png);
+    /*background: radial-gradient(ellipse at center, #e4d9c6 0%, #d6c6aa 50%, #c9b38e 100%);*/
     color: black
 }
 .footer-line {
@@ -125,4 +127,9 @@ body {
 }
 a {
     color: #087c4c;
+}
+li.paginate_button.active > a {
+    border-color: rgba(50, 50, 50, 0.5);
+    background-color: #6d4253;
+    color: #ffffff;
 }

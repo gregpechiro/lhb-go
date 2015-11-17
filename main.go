@@ -17,7 +17,7 @@ var db = dbdb.NewDataStore()
 func main() {
 
 	mux.AddRoutes(home, gallery, about, contact, services, listings, floorPlans, login, logout, msg)
-	mux.AddSecureRoutes(ADMIN, webmaster, allListings)
+	mux.AddSecureRoutes(ADMIN, webmaster, allListings, uploadImage)
 	http.ListenAndServe(":8080", mux)
 
 }
@@ -99,11 +99,14 @@ var uploadImage = web.Route{"GET", "/upload", func(w http.ResponseWriter, r *htt
 	}
 	defer f.Close()
 	io.Copy(f, file)
-	/*doc := map[string]interface{}{
-		"category":
-		"description":
-		"src":
-	}*/
+	doc := map[string]interface{}{
+		"category":    r.FormValue("category"),
+		"description": r.FormValue("description"),
+		"src":         handler.Filename,
+	}
+	db.Add("images", doc)
+	web.SetSuccessRedirect(w, r, "/webmaster", "Successfully Uploaded Image")
+	return
 
 }}
 

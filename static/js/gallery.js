@@ -13,5 +13,5 @@ $( document ).ready( function() {
 
     setTimeout(function() {
         $container.isotope({ filter: '*' });
-    }, 100);
+    }, 1000);
 });
