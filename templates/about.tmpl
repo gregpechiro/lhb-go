@@ -7,7 +7,6 @@
 	<body class="">
 		<div class="container">
 			{{ template "navbar" . }}
-
 			<div class="row">
 				<div class="col-lg-3 col-md-3 hidden-sm hidden-xs">
 					<h1 class="text-center border-bottom text-green no-margin-top">Affiliations</h1>
@@ -67,13 +66,11 @@
 					</div>
 				</div>
 			</div>
-
 			{{ template "footer" . }}
         </div>
 
-        <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-		<script src="/static/js/nav.js" charset="utf-8"></script>
+        {{ template "scripts" . }}
+
 		<script type="text/javascript">
 		var quotes = [
 			'Joe Nadu listened to our requirements, and his architect designed a home that we are now truly enjoying. The craftsmen were very good, respectful and pleasant.',

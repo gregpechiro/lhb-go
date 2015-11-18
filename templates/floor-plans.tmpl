@@ -7,17 +7,8 @@
 	<body class="">
 		<div id="container" class="container">
 			{{ template "navbar" . }}
-
 			<h2 class="text-green text-underline text-center">New Home Brochures</h2>
-			<!-- <div class="col-sm-12 no-padding-left">
-				<p class="col-md-8 no-padding-left">
-					Our variety of floor plans is an ideal starting point for you to design your new home. Follow them exactly
-					or throw in your own little twist to make it your own.  Every plan offers space to gather, entertain, store,
-					organize and relax. If you already have a floor plan in mind, we can accommodate that too.
-				</p>
-			</div> -->
 			<br>
-
             <ul class="visible-xs">
 			    <li><a href="/static/doc/AugustaBrochure.pdf">Augusta Brochure, 2582 sq ft</a></li>
                 <li><a href="/static/doc/CharlestonBrochure.pdf">Charleston Brochure, 2754 sq ft</a></li>
@@ -31,7 +22,6 @@
                 <li><a href="/static/doc/TylerIIBrochure.pdf">Tyler II Brochure, 1632 sq ft</a></li>
                 <li><a href="/static/doc/YorkshireBrochure.pdf">Yorkshire Brochure, 1700 sq ft</a></li>
             </ul>
-
             <div class="row hidden-xs">
                 <div class="col-sm-3 margin-bottom">
                     <a id="brochure-1" data-title="Augusta Brochure" data-body="/static/doc/AugustaBrochure.pdf" href="#"><img class="img-responsive" src="/static/img/docIcons/Augusta.jpg" alt="" /></a>
@@ -58,7 +48,6 @@
                 <div class="col-sm-3 margin-bottom">
                     <a id="brochure-8" data-title="Ryleigh Brochure" data-body="/static/doc/RyleighBrochure.pdf" href="#"><img class="img-responsive" src="/static/img/docIcons/Ryleigh.jpg" alt="" /></a>
                 </div>
-
                 <div class="col-sm-3">
                     <a id="brochure-9" data-title="Tyler Brochure" data-body="/static/doc/TylerBrochure.pdf" href="#"><img class="img-responsive" src="/static/img/docIcons/Tyler.jpg" alt="" /></a>
                 </div>
@@ -85,13 +74,11 @@
                     </div>
                 </div>
             </div>
-
 			{{ template "footer" . }}
 		</div>
 
-		<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
-		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-		<script src="/static/js/nav.js" charset="utf-8"></script>
+		{{ template "scripts" . }}
+
 		<script type="text/javascript">
 		var quotes = [
 			'We recently moved into our beautiful new home... Thank you to everyone at Lancaster Home Builders. We certainly recommend Lancaster Home Builders.',

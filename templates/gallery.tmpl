@@ -2,92 +2,40 @@
 <html>
 	<head>
 		<title>Gallery | Lancaster Home Builders PA Home Construction</title>
-		<!--meta-->
 		<meta name="format-detection" content="telephone=no" />
 		{{ template "head" . }}
 		<link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
-		<link rel="stylesheet" href="style/bootstrap-image-gallery.min.css">
+		<link rel="stylesheet" href="/static/css/bootstrap-image-gallery.min.css">
 	</head>
 	<body>
 		<div class="container">
 			{{ template "navbar" . }}
 			<div class="row">
-				<!--
-				<?php
-				ini_set('display_errors',1);
-				error_reporting(E_ALL);
-				// server variables
-				$server = "localhost";
-				$user = "root";
-				$pass = "root";
-				$db_name = "lhb_db";
-				// connect to server
-				$conn = new mysqli($server, $user, $pass, $db_name);
-
-				// check connection
-				if ($conn->connect_error) {
-					die("connection failed: " . $conn->connect_error);
-				}
-
-				$imageQuery = "SELECT * FROM images";
-				$images = $conn->query($imageQuery);
-
-				$categoryQuery = "SELECT DISTINCT category  FROM images";
-				$categories = $conn->query($categoryQuery);
-
-				$conn->close();
-				?>
-				 -->
 				<div class="col-xs-12">
 					<button style="margin-bottom:5px" class="filter btn btn-dark active" data-filter="*">Show All</button>
-					<!--
-					<?php
-					if ($categories->num_rows > 0) {
-						while($category = $categories->fetch_assoc()) {
-							echo '<button style="margin-right:4px;margin-bottom:5px;" class="filter btn btn-dark" data-filter=".' . strtolower($category["category"]) . '">' . ucfirst($category["category"]) . '</button>';
-						}
-					}
-					?>
-					 -->
+					{{ range $cat := .cats }}
+						<button style="margin-right:4px;margin-bottom:5px;" class="filter btn btn-dark" data-filter=".{{ $cat | snake }}">{{ $cat }}</button>
+					{{ end }}
 					<strong>Check out our floor plans <a href="/floor-plans">Here</a>!</strong>
 				</div>
-
 			</div>
 			<br>
 			<div class="row">
 				<div id="links" class="isotope">
-					<!--
-					<?php
-					if ($images->num_rows > 0) {
-						while($image = $images->fetch_assoc()) {
-							echo '<div class="col-lg-3 col-md-3 col-sm-4 item ' . strtolower($image["category"]) . '">
-									<a href="' . $image["source"] . '" id="' . $image["id"] . '" title="' . $image["description"] . '" data-gallery>
-										<img style="margin-bottom:10px" class="img-responsive" src="' . $image["source"] . '" alt="img">
-									</a>
-								</div>';
-						}
-					}
-					?>
-					 -->
+					{{ range $image := .images }}
+						<div class="col-lg-3 col-md-3 col-sm-4 item {{ $image.Data.category | snake }}">
+							<a href="/static/img/upload/{{ $image.Data.source }}" id="{{ $image.Id }}" title="{{ $image.Data.description }}" data-gallery>
+								<img style="margin-bottom:10px" class="img-responsive" src="/static/img/upload/{{ $image.Data.source }}" alt="img">
+							</a>
+						</div>
+					{{ end }}
 				</div>
 			</div>
-
 			{{ template "footer" . }}
-
-			<!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
 			<div id="blueimp-gallery" class="blueimp-gallery" data-use-bootstrap-modal="false">
-    			<!-- The container for the modal slides -->
     			<div class="slides"></div>
     			<h3 class="title"></h3>
     			<a class="close">×</a>
-    			<!-- Controls for the borderless lightbox -->
-    			<!---
-				<a class="prev">‹</a>
-    			<a class="next">›</a>
-    			<a class="play-pause"></a>
-    			<ol class="indicator"></ol>
-				-->
-    			<!-- The modal dialog, which will be used to wrap the lightbox content -->
     			<div class="modal fade">
         			<div class="modal-dialog">
             			<div class="modal-content">
@@ -110,12 +58,11 @@
         			</div>
     			</div>
 			</div>
-
 		</div>
-		<script src="//code.jquery.com/jquery-2.1.4.min.js" charset="utf-8"></script>
-		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+		{{ template "scripts" . }}
+
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.1/isotope.pkgd.min.js"></script>
-		<script src="/static/js/nav.js" charset="utf-8"></script>
 		<script type="text/javascript">
 		var quotes = [
 			'We appreciated the ability to make adjustments to the home as we saw the progression of the build. Our design selections and the construction of the final product look beautiful.',

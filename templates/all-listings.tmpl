@@ -18,37 +18,43 @@
 									<div class="form-group">
 										<label class="control-label col-xs-3">Street:</label>
 										<div class="col-xs-9">
-											<input class="form-control" type="text" name="street" id="street" value="{{ .listing.Data.street }}">
+											<input class="form-control" type="text" name="street" id="street" value="{{ .listing.Data.street }}" required>
 										</div>
 									</div>
 									<div class="form-group">
 										<label class="control-label col-xs-3">City:</label>
 										<div class="col-xs-9">
-											<input type="text" class="form-control" name="city" id="city" value="{{ .listing.Data.city }}">
+											<input type="text" class="form-control" name="city" id="city" value="{{ .listing.Data.city }}" required>
 										</div>
 									</div>
 	                                <div class="form-group">
 										<label class="control-label col-xs-3">State:</label>
 										<div class="col-xs-9">
-											<input type="text" class="form-control" name="state" id="state" value="{{ .listing.Data.state }}">
+											<input type="text" class="form-control" name="state" id="state" value="{{ .listing.Data.state }}" required>
 										</div>
 									</div>
 	                                <div class="form-group">
 										<label class="control-label col-xs-3">Zip:</label>
 										<div class="col-xs-9">
-											<input type="text" class="form-control" name="zip" id="zip" value="{{ .listing.Data.zip }}">
+											<input type="text" class="form-control" name="zip" id="zip" value="{{ .listing.Data.zip }}" required>
 										</div>
 									</div>
 	                                <div class="form-group">
 										<label class="control-label col-xs-3">MLS #:</label>
 										<div class="col-xs-9">
-											<input type="text" class="form-control" name="mls" id="mls" value="{{ .listing.Data.mls }}">
+											<input type="text" class="form-control" name="mls" id="mls" value="{{ .listing.Data.mls }}" required>
 										</div>
 									</div>
 	                                <div class="form-group">
 										<label class="control-label col-xs-3">Agent:</label>
 										<div class="col-xs-9">
-											<input type="text" class="form-control" name="agent" id="agent" value="{{ .listing.Data.agent }}">
+											<input type="text" class="form-control" name="agent" id="agent" value="{{ .listing.Data.agent }}" required>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-xs-3">Phone:</label>
+										<div class="col-xs-9">
+											<input type="text" class="form-control" name="phone" id="phone" value="{{ .listing.Data.phone }}" required>
 										</div>
 									</div>
 									<input type="hidden" name="id" id="id" value="{{ .listing.Id }}">
@@ -58,46 +64,49 @@
 										</div>
 									</div>
 								</form>
-								<form class="form-horizontal" action="delete-listing.php" method="post">
-									<input type="hidden" name="id" id="id" value="{{ .listing.Id }}">
-									<button class="btn btn-danger btn-block">Delete</button>
-								</form>
+								<a href="#" data-delete="/all-listing/{{ .listing.Id }}" data-message="Are you sure you would like to permanently delete this listing?" class="btn btn-danger btn-block delete-button">Delete</a>
 							{{ else }}
 								<form action="/save-listing" method="post" class="form-horizontal">
 									<div class="form-group">
 										<label class="control-label col-xs-3">Street:</label>
 										<div class="col-xs-9">
-											<input class="form-control" type="text" name="street" id="street">
+											<input class="form-control" type="text" name="street" id="street" required>
 										</div>
 									</div>
 									<div class="form-group">
 										<label class="control-label col-xs-3">City:</label>
 										<div class="col-xs-9">
-											<input type="text" class="form-control" name="city" id="city">
+											<input type="text" class="form-control" name="city" id="city" required>
 										</div>
 									</div>
                                     <div class="form-group">
 										<label class="control-label col-xs-3">State:</label>
 										<div class="col-xs-9">
-											<input type="text" class="form-control" name="state" id="state">
+											<input type="text" class="form-control" name="state" id="state" required>
 										</div>
 									</div>
                                     <div class="form-group">
 										<label class="control-label col-xs-3">Zip:</label>
 										<div class="col-xs-9">
-											<input type="text" class="form-control" name="zip" id="zip">
+											<input type="text" class="form-control" name="zip" id="zip" required>
 										</div>
 									</div>
                                     <div class="form-group">
 										<label class="control-label col-xs-3">MLS #:</label>
 										<div class="col-xs-9">
-											<input type="text" class="form-control" name="mls" id="mls">
+											<input type="text" class="form-control" name="mls" id="mls" required>
 										</div>
 									</div>
                                     <div class="form-group">
 										<label class="control-label col-xs-3">Agent:</label>
 										<div class="col-xs-9">
-											<input type="text" class="form-control" name="agent" id="agent">
+											<input type="text" class="form-control" name="agent" id="agent" required>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-xs-3">Phone:</label>
+										<div class="col-xs-9">
+											<input type="text" class="form-control" name="phone" id="phone" required>
 										</div>
 									</div>
 									<button class="btn btn-dark btn-block">Save</button>
@@ -113,6 +122,7 @@
                                 <th>Address</th>
                                 <th>MLS #</th>
                                 <th>Agent</th>
+								<th>Phone</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -122,6 +132,7 @@
         						    <td>{{ $listing.Data.street }} {{ $listing.Data.city }} {{ $listing.Data.state }} {{ $listing.Data.zip }}</td>
         						    <td>{{ $listing.Data.mls }}</td>
                                     <td>{{ $listing.Data.agent }}</td>
+									<td>{{ $listing.Data.phone }}</td>
                                     <td><a href="/all-listings/{{ $listing.Id }}" class="btn btn-dark btn-sm">Edit</a></td>
                                 </tr>
 							{{ end }}
@@ -131,14 +142,11 @@
 			</div>
 		</div>
 
-		{{ template "footer" . }}
-
 		<script src="//code.jquery.com/jquery-2.1.4.min.js" charset="utf-8"></script>
 		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/datatables/1.10.7/js/jquery.dataTables.min.js"></script>
 		<script src="/static/js/data-table-bootstrap.js"></script>
-		<script src="/static/js/nav.js" charset="utf-8"></script>
-		<script src="/static/js/login.js" charset="utf-8"></script>
+		<script src="/static/js/delete.js" charset="utf-8"></script>
 		<script type="text/javascript">
 			$(document).ready(function() {
 				$('#listings').DataTable({

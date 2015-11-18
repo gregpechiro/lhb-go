@@ -22,7 +22,6 @@
 					<li data-target="#carousel-example-generic" data-slide-to="2"></li>
 					<li data-target="#carousel-example-generic" data-slide-to="3"></li>
 				</ol>
-
 				<!-- Wrapper for slides -->
 				<div class="carousel-inner" role="listbox">
 					<div class="item active">
@@ -99,7 +98,6 @@
 						</div>
 					</div>
 				</div>
-
 				<!-- Controls -->
 				<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
 					<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -113,9 +111,8 @@
 			{{ template "footer" . }}
 		</div>
 
-		<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
-		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-		<script src="/static/js/nav.js" charset="utf-8"></script>
+		{{ template "scripts" . }}
+
 		<script type="text/javascript">
 			var quotes = [
 				'We recently moved into our beautiful new home... Thank you to everyone at Lancaster Home Builders. We certainly recommend Lancaster Home Builders.',

@@ -12,35 +12,6 @@
 		</style>
 	</head>
 	<body>
-		<!--
-		<?php
-		ini_set('display_errors',1);
-		error_reporting(E_ALL);
-		// server variables
-		$server = "localhost";
-		$user = "root";
-		$pass = "root";
-		$db_name = "lhb_db";
-		// connect to server
-		$conn = new mysqli($server, $user, $pass, $db_name);
-
-		// check connection
-		if ($conn->connect_error) {
-			die("connection failed: " . $conn->connect_error);
-		}
-
-		$listingQuery = "SELECT * FROM listings";
-		$listings = $conn->query($listingQuery);
-
-		if (isset($_GET["id"])) {
-			$lstQuery = "SELECT * FROM listings WHERE id=" . $_GET["id"];
-			$lstResult = $conn->query($lstQuery);
-			$lst = $lstResult->fetch_assoc();
-		}
-
-		$conn->close();
-		?>
-		 -->
 		<div class="container">
 			{{ template "navbar" . }}
 			<div class="row">
@@ -79,23 +50,18 @@
                         		<th>Address</th>
                         		<th>MLS #</th>
                         		<th>Agent</th>
-								<th>phone</th>
+								<th>Phone</th>
                     		</tr>
                     	</thead>
                     	<tbody>
-							<!--
-                    		<?php
-            		    		if ($listings->num_rows > 0) {
-            		        		while($listing = $listings->fetch_assoc()) {
-            			    		echo '<tr>
-											<td>' . $listing["street"] . ' ' . $listing["city"] . ', ' . $listing["state"] . ' ' . $listing["zip"] . '</td>
-            			            		<td>' . $listing["mls"] . '</td>
-                                    		<td>' . $listing["agent"] . '</td>
-                                		</tr>';
-            		        		}
-            		    		}
-            				?>
-							 -->
+							{{ range $listing := .listings }}
+								<tr>
+        						    <td>{{ $listing.Data.street }} {{ $listing.Data.city }} {{ $listing.Data.state }} {{ $listing.Data.zip }}</td>
+        						    <td>{{ $listing.Data.mls }}</td>
+                                    <td>{{ $listing.Data.agent }}</td>
+                                    <td>{{ $listing.Data.phone }}</td>
+                                </tr>
+							{{ end }}
                     	</tbody>
                     </table>
 				</div>
@@ -103,11 +69,10 @@
 		{{ template "footer" . }}
 		</div>
 
-		<script src="//code.jquery.com/jquery-2.1.4.min.js" charset="utf-8"></script>
-		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		{{ template "scripts" . }}
+
 		<script src="//cdnjs.cloudflare.com/ajax/libs/datatables/1.10.7/js/jquery.dataTables.min.js"></script>
 		<script src="/static/js/data-table-bootstrap.js"></script>
-		<script src="/static/js/nav.js" charset="utf-8"></script>
 		<script type="text/javascript">
 		var quotes = [
 			'We recently moved into our beautiful new home... Thank you to everyone at Lancaster Home Builders. We certainly recommend Lancaster Home Builders.',

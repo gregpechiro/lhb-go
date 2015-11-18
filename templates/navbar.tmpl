@@ -1,34 +1,5 @@
 {{ define "navbar" }}
 <div id="navbar" class="row no-margin">
-
-    <div class="col-lg-12">
-		<!-- delete object alert -->
-		<div id="deleteAlert" class="alert alert-danger clearfix hide">
-			<form id="deleteForm" action="" method="post" class="col-lg-2">
-				<button id="delete" class="btn btn-danger btn-sm">Yes</button>
-				<a id="deleteCancel" class="btn btn-default btn-sm">No</a>
-			</form>
-			<span id="message"></span>
-		</div>
-		<!-- other alerts -->
-		{{ if .alert }}
-		<div class="alert alert-info alert-dismissable">
-			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-			{{ .alert }}
-		</div>
-		{{ else if .alertError }}
-		<div class="alert alert-danger alert-dismissable">
-			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-			{{ .alertError }}
-		</div>
-		{{ else if .alertSuccess }}
-		<div class="alert alert-success alert-dismissable">
-			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-			{{ .alertSuccess }}
-		</div>
-		{{ end }}
-	</div>
-
     <!-- <h1  id="pageName" class="col-lg-3 logo text-center"></h1> -->
     <div class="col-lg-3 col-md-3 hidden-sm hidden-xs">
         <a href="/"><img class="img-responsive" src="/static/img/lhbImages/lhblogo.png" alt="" /></a>
@@ -46,7 +17,6 @@
                     </button>
                     <a style="padding-right:0" class="navbar-brand" href="/"><div id="pageName"></div></a>
                 </div>
-
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
