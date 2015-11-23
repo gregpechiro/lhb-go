@@ -2,11 +2,11 @@
 <html>
 	<head>
 		<title>Home | Lancaster Home Builders PA Home Construction</title>
-		{{ template "head" . }}
+		{{ template "head.tmpl" . }}
 	</head>
 	<body class="">
 		<div id="container" class="container">
-			{{ template "navbar" . }}
+			{{ template "navbar.tmpl" . }}
 			<h2 class="text-green text-underline text-center">New Home Brochures</h2>
 			<br>
             <ul class="visible-xs">
@@ -74,10 +74,10 @@
                     </div>
                 </div>
             </div>
-			{{ template "footer" . }}
+			{{ template "footer.tmpl" . }}
 		</div>
 
-		{{ template "scripts" . }}
+		{{ template "scripts.tmpl" . }}
 
 		<script type="text/javascript">
 		var quotes = [

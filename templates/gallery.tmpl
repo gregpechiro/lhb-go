@@ -3,13 +3,13 @@
 	<head>
 		<title>Gallery | Lancaster Home Builders PA Home Construction</title>
 		<meta name="format-detection" content="telephone=no" />
-		{{ template "head" . }}
+		{{ template "head.tmpl" . }}
 		<link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
 		<link rel="stylesheet" href="/static/css/bootstrap-image-gallery.min.css">
 	</head>
 	<body>
 		<div class="container">
-			{{ template "navbar" . }}
+			{{ template "navbar.tmpl" . }}
 			<div class="row">
 				<div class="col-xs-12">
 					<button style="margin-bottom:5px" class="filter btn btn-dark active" data-filter="*">Show All</button>
@@ -31,7 +31,7 @@
 					{{ end }}
 				</div>
 			</div>
-			{{ template "footer" . }}
+			{{ template "footer.tmpl" . }}
 			<div id="blueimp-gallery" class="blueimp-gallery" data-use-bootstrap-modal="false">
     			<div class="slides"></div>
     			<h3 class="title"></h3>
@@ -60,7 +60,7 @@
 			</div>
 		</div>
 
-		{{ template "scripts" . }}
+		{{ template "scripts.tmpl" . }}
 
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.1/isotope.pkgd.min.js"></script>
 		<script type="text/javascript">

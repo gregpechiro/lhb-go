@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<title>Home | Lancaster Home Builders PA Home Construction</title>
-		{{ template "head" . }}
+		{{ template "head.tmpl" . }}
 		<style>
 			.carousel-caption {
 				padding-bottom: 0px;
@@ -13,7 +13,7 @@
 	</head>
 	<body class="">
 		<div id="container" class="container">
-			{{ template "navbar" . }}
+			{{ template "navbar.tmpl" . }}
 			<div id="carousel-example-generic" class="carousel slide carousel-border" data-ride="carousel">
 			  <!-- Indicators -->
 				<ol class="carousel-indicators hidden-xs">
@@ -108,10 +108,10 @@
 					<span class="sr-only">Next</span>
 				</a>
 			</div>
-			{{ template "footer" . }}
+			{{ template "footer.tmpl" . }}
 		</div>
 
-		{{ template "scripts" . }}
+		{{ template "scripts.tmpl" . }}
 
 		<script type="text/javascript">
 			var quotes = [

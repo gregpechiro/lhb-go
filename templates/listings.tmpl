@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<title>LHB |  - Construction Renovation Template</title>
-		{{ template "head" . }}
+		{{ template "head.tmpl" . }}
 		<link rel="stylesheet" href="/static/css/data-table-bootstrap.css">
 		<style>input.uploader{position:absolute;left:-9999px;}label.uploader{cursor:pointer;}</style>
 		<style>
@@ -13,7 +13,7 @@
 	</head>
 	<body>
 		<div class="container">
-			{{ template "navbar" . }}
+			{{ template "navbar.tmpl" . }}
 			<div class="row">
 				<div class="col-lg-3 col-md-4 col-md-offset-0 hidden-sm hidden-xs">
 					<h1 class="text-center border-bottom text-green no-margin-top">New Homes</h1>
@@ -66,10 +66,10 @@
                     </table>
 				</div>
 			</div>
-		{{ template "footer" . }}
+		{{ template "footer.tmpl" . }}
 		</div>
 
-		{{ template "scripts" . }}
+		{{ template "scripts.tmpl" . }}
 
 		<script src="//cdnjs.cloudflare.com/ajax/libs/datatables/1.10.7/js/jquery.dataTables.min.js"></script>
 		<script src="/static/js/data-table-bootstrap.js"></script>
