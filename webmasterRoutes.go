@@ -70,9 +70,11 @@ var saveImage = web.Route{"POST", "/webmaster/save-image/:id", func(w http.Respo
 }}
 
 var oneImage = web.Route{"GET", "/webmaster/:id", func(w http.ResponseWriter, r *http.Request) {
+	images := db.GetAll("image")
 	tmpl.Render(w, r, "webmaster.tmpl", web.Model{
 		"images": db.GetAll("image"),
 		"image":  db.Get("image", ParseId(r.FormValue(":id"))),
+		"cats":   getCategories(images),
 		"page":   "webmaster",
 	})
 	return
