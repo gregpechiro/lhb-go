@@ -12,7 +12,7 @@
 	</head>
 	<body>
 		<div class="container-fluid">
-			{{ template "admin-nav.tmpl" . }}
+			{{ template "webmaster-nav.tmpl" . }}
 			<div class="row">
 				<div style="padding:0"  class="col-md-4 col-xs-12 text-black">
 					<div class="col-md-12 col-sm-6">
@@ -64,7 +64,6 @@
 												<input type="text" class="form-control" name="category" id="category" required>
 											</div>
 										</div>
-										<input type="hidden" name="_csrf" value="{{ ._csrf }}">
 										<button class="btn btn-dark btn-block" id="upload">Upload</button>
 									</form>
 								{{ end }}

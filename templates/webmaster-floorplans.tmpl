@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>LHB |  - Construction Renovation Template</title>
+		{{ template "head.tmpl" . }}
+		<style>input.uploader{position:absolute;left:-9999px;}label.uploader{cursor:pointer;}</style>
+		<style>
+			.form-horizontal .control-label {
+				text-align: left;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container-fluid">
+			{{ template "webmaster-nav.tmpl" . }}
+			<div class="row">
+				<div style="padding:0"  class="col-md-4 col-xs-12 text-black">
+					<div class="col-md-12 col-sm-6">
+						<div style="border:1px solid #532d3a" class="panel">
+							<div style="background-color:#532d3a; color:white;" class="panel-heading clearfix">
+								Floorplan
+								<a href="/webmaster/floorplans" class="pull-right" style="color:white;">Cancel</a>
+							</div>
+							<div class="panel-body">
+								<form action="/webmaster/upload-floorplan" method="post" id="uploader" class="form-horizontal" enctype="multipart/form-data">
+									<div class="form-group">
+										<div class="col-xs-12">
+											<label class="btn btn-default btn-block uploader" for="file">Select Floorplan</label>
+											<input class="uploader" id="file" type="file" name="floorplan" required>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-xs-2">Name:</label>
+										<div class="col-xs-10">
+											<input type="text" class="form-control" name="name" id="category" required>
+										</div>
+									</div>
+									<button class="btn btn-dark btn-block" id="upload">Upload</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-8 col-xs-12">
+					<div class="text-center">
+						<h3>Floor Plans</h3>
+					</div>
+				</div>
+				<br>
+				<div class="col-md-8 col-xs-12">
+					{{ range $fp := .floorplans}}
+                        <div class="col-md-4 text-center">
+                            <div class="well well-sm" style="margin-bottom: 5px;">
+                                <strong><a class="floorplan" data-title="{{ split $fp "." 0 }}" data-type="{{ split $fp "." 1 }}" data-body="/static/floorplans/{{ $fp }}" style="cursor: pointer">{{ split $fp "." 0 }}</a></strong>
+                            </div>
+                            <form action="/webmaster/floorplan/rename" method="post">
+                                <input class="form-control" type="text" name="name" value="{{ split $fp "." 0 }}">
+                                <input type="hidden" name="oldName" value="{{ $fp }}">
+                                <div class="btn-group btn-group-justified">
+                                    <div class="btn-group btn-group-xs" role="group">
+                                        <button class="btn btn-primary">Rename</button>
+                                    </div>
+                                    <div class="btn-group btn-group-xs" role="group">
+                                        <a href="#" data-delete="/webmaster/floorplan/{{ $fp }}" data-message="Are you sure you would like to permanently delete this floorplan?" class="btn btn-danger btn-block delete-button">Delete</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    {{ end }}
+				</div>
+			</div>
+		</div>
+
+        <div id="floorplan-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="brochure-modal-title">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button class="close" data-dismiss="modal" aria-label="close" type="button" name="button">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <span class="text-black text-center text-18" id="floorplan-modal-title"></span>
+                    </div>
+                    <div class="modal-body">
+                        <object id="floorplan-modal-body" data="" type="" width="100%" height=""></object>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+		<script src="//code.jquery.com/jquery-2.1.4.min.js" charset="utf-8"></script>
+		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		<script src="/static/js/delete.js" charset="utf-8"></script>
+		<script src="/static/js/upload.js" charset="utf-8"></script>
+        <script src="/static/js/floorplans.js" charset="utf-8"></script>
+        <script type="text/javascript">
+            uploader.fileTypes = ['image/jpeg', 'image/png', 'application/pdf'];
+            uploader.fileTypeErrorMsg = "Incorrect File type. Only PDF, JPEG, and PNG files";
+            uploader.defaultText = "Select Floorplan";
+        </script>
+    </body>
+</html>

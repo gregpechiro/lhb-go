@@ -2,8 +2,8 @@ package main
 
 import "github.com/cagnosolutions/web"
 
-var ADMIN = web.Auth{
-	Roles:    []string{"admin"},
+var WEBMASTER = web.Auth{
+	Roles:    []string{"webmaster"},
 	Redirect: "/",
 	Msg:      "You are not authorized",
 }

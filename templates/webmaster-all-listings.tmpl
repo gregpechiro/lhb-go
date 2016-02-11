@@ -7,14 +7,14 @@
 	</head>
 	<body>
 		<div class="container-fluid">
-			{{ template "admin-nav.tmpl" . }}
+			{{ template "webmaster-nav.tmpl" . }}
 			<div class="row">
 				<div class="col-md-4 text-black">
 					<div style="border:1px solid #532d3a" class="panel">
 						<div style="background-color:#532d3a; color:white;" class="panel-heading">Gallery</div>
 						<div class="panel-body">
 							{{ if .listing }}
-								<form action="/save-listing/{{ .listing.Id }}" method="post" class="form-horizontal">
+								<form action="/webmaster/save-listing/{{ .listing.Id }}" method="post" class="form-horizontal">
 									<div class="form-group">
 										<label class="control-label col-xs-3">Street:</label>
 										<div class="col-xs-9">
@@ -64,9 +64,9 @@
 										</div>
 									</div>
 								</form>
-								<a href="#" data-delete="/all-listing/{{ .listing.Id }}" data-message="Are you sure you would like to permanently delete this listing?" class="btn btn-danger btn-block delete-button">Delete</a>
+								<a href="#" data-delete="/webmaster/all-listing/{{ .listing.Id }}" data-message="Are you sure you would like to permanently delete this listing?" class="btn btn-danger btn-block delete-button">Delete</a>
 							{{ else }}
-								<form action="/save-listing" method="post" class="form-horizontal">
+								<form action="/webmaster/save-listing" method="post" class="form-horizontal">
 									<div class="form-group">
 										<label class="control-label col-xs-3">Street:</label>
 										<div class="col-xs-9">
@@ -133,7 +133,7 @@
         						    <td>{{ $listing.Data.mls }}</td>
                                     <td>{{ $listing.Data.agent }}</td>
 									<td>{{ $listing.Data.phone }}</td>
-                                    <td><a href="/all-listings/{{ $listing.Id }}" class="btn btn-dark btn-sm">Edit</a></td>
+                                    <td><a href="/webmaster/all-listings/{{ $listing.Id }}" class="btn btn-dark btn-sm">Edit</a></td>
                                 </tr>
 							{{ end }}
                         </tbody>

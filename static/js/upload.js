@@ -77,3 +77,8 @@ Uploader.prototype = {
 }
 
 var uploader = new Uploader();
+
+
+function Uploader() {
+    this.init()
+}
