@@ -3,6 +3,7 @@
 clear
 NODE="$1"
 DIR=`echo ${PWD##*/}`
+EXCLUDE=(".git" ".gitignore" "db" "upload" "deploy.sh")
 
 if [ "$NODE" == "" ]; then
     echo "No node specified!"
@@ -25,7 +26,12 @@ if [ ! -f $DIR ]; then
 fi
 
 echo "Creating tar ${DIR}.tar..."
-tar cf $DIR.tar * --exclude ".git" --exclude ".gitignore" --exclude "db" --exclude "upload" -exclude "deploy.sh"
+
+for item in ${EXCLUDE[*]}; do
+    TOGETHER="$TOGETHER --exclude $item"
+done
+
+tar cf $DIR.tar * $TOGETHER
 if [ ! -f "$DIR.tar" ]; then
     echo "Create $DIR.tar failed."
     exit 1
