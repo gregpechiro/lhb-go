@@ -2,22 +2,26 @@
 <html>
 	<head>
 		<title>LHB |  - Construction Renovation Template</title>
+
 		{{ template "head.tmpl" . }}
+
 		<link rel="stylesheet" href="/static/css/data-table-bootstrap.css">
-		<style>input.uploader{position:absolute;left:-9999px;}label.uploader{cursor:pointer;}</style>
-		<style>
-			.form-horizontal .control-label {
-				text-align: left;
-			}
-		</style>
 	</head>
 	<body>
 		<div class="container">
+
+			<!-- navbar -->
 			{{ template "navbar.tmpl" . }}
+			<!-- navbar -->
+
 			<div class="row">
+
+				<!-- new home carousel -->
 				<div class="col-lg-3 col-md-4 col-md-offset-0 hidden-sm hidden-xs">
 					<h1 class="text-center border-bottom text-green no-margin-top">New Homes</h1>
 					<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+
+						<!-- slides -->
 						<div class="carousel-inner" role="listbox">
 							<div class="item active">
 								<img src="/static/img/lhbImages/listingsSlider/IMG_6437.jpg" alt="...">
@@ -42,7 +46,12 @@
 							</div>
 						</div>
 					</div>
+					<!-- slides -->
+
 				</div>
+				<!-- new home carousel -->
+
+				<!-- listings -->
                 <div class="col-lg-9 col-md-8">
                     <table id="listings" class="table table-striped table-bordered" style="background-color: white">
                     	<thead>
@@ -65,10 +74,17 @@
                     	</tbody>
                     </table>
 				</div>
+				<!-- listings -->
+
 			</div>
-		{{ template "footer.tmpl" . }}
+
+			<!-- footer -->
+			{{ template "footer.tmpl" . }}
+			<!-- footer -->
+
 		</div>
 
+		<!-- javascript -->
 		{{ template "scripts.tmpl" . }}
 
 		<script src="//cdnjs.cloudflare.com/ajax/libs/datatables/1.10.7/js/jquery.dataTables.min.js"></script>
@@ -81,12 +97,8 @@
 		];
 		</script>
 		<script src="/static/js/quote.js" charset="utf-8"></script>
-		<script type="text/javascript">
-			$(document).ready(function() {
-				$('#listings').DataTable({
-					lengthMenu:[5,10,20]
-				});
-			});
-		</script>
+		<script type="text/javascript">$(document).ready(function() {$('#listings').DataTable({lengthMenu:[5,10,20]});});</script>
+		<!-- javascipt -->
+
     </body>
 </html>

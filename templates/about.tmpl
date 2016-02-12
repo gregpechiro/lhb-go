@@ -2,12 +2,20 @@
 <html>
 	<head>
 		<title>About | Lancaster Home Builders PA Home Construction</title>
+
 		{{ template "head.tmpl" . }}
+
 	</head>
 	<body>
 		<div class="container">
+
+			<!-- navbar -->
 			{{ template "navbar.tmpl" . }}
+			<!-- navbar -->
+
 			<div class="row">
+
+				<!-- affiliations -->
 				<div class="col-lg-3 col-md-3 hidden-sm hidden-xs">
 					<h1 class="text-center border-bottom text-green no-margin-top">Affiliations</h1>
 					<br>
@@ -21,6 +29,9 @@
 						<img style="float:right" src="/static/img/a-plus.png" alt="" />
 			        </a>
 				</div>
+				<!-- affiliations -->
+
+				<!-- why choose us -->
 				<div class="col-lg-9 col-md-9 col-sm-12">
 					<h2 class="text-center text-green text-underline no-margin-top">Why Choose Us</h2>
 					<p class="text-center">
@@ -35,6 +46,8 @@
 						Once you’ve chosen how you would like your home to look, we bring in the best subcontractors
 						in the industry to make it happen.
 					</p>
+
+					<!-- background -->
 					<h3 class="text-green text-center">Background:</h3>
 					<p class="text-center">
 						From the age of six when Joe Nadu received his first tool box at Christmas, he knew he wanted to be a builder.
@@ -47,6 +60,9 @@
 						Construction. His motto: “Build a Quality Home at an Affordable Price.” The name of the company has
 						since changed, but the quality and affordability continue at Lancaster Home Builders.
 					</p>
+					<!-- background -->
+
+					<!-- our mission -->
 					<div class="text-center">
 						<h3 class="text-green">Our Mission:</h3>
 						<p class="">At Lancaster Home Builders, our goal is simple. We are committed to providing you with remarkable
@@ -55,6 +71,9 @@
 							home or project, we are here to serve you.
 						</p>
 					</div>
+					<!-- our mission -->
+
+					<!-- mobile affiliations -->
 					<div class="visible-sm visible-xs text-center">
 						<h3 class="text-green">Affliations:</h3>
 						<a target="_blank" href="http://www.lancasterbuilders.org/">
@@ -64,11 +83,20 @@
 			                <img class="logo logo-center img-responsive text-center" src="/static/img/bbb.png" alt="" />
 			            </a>
 					</div>
+					<!-- mobile affiliations -->
+
 				</div>
+				<!-- why choose us -->
+
 			</div>
+
+			<!-- footer -->
 			{{ template "footer.tmpl" . }}
+			<!-- footer -->
+
         </div>
 
+		<!-- javascript -->
         {{ template "scripts.tmpl" . }}
 
 		<script type="text/javascript">
@@ -80,5 +108,7 @@
 		];
 		</script>
 		<script src="/static/js/quote.js" charset="utf-8"></script>
+		<!-- javascript -->
+
     </body>
 </html>

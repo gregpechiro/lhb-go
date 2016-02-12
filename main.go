@@ -92,7 +92,7 @@ var floorPlans = web.Route{"GET", "/floor-plans", func(w http.ResponseWriter, r 
 var login = web.Route{"POST", "/login", func(w http.ResponseWriter, r *http.Request) {
 	if r.FormValue("username") == USERNAME && r.FormValue("password") == PASSWORD {
 		web.Login(w, r, "webmaster")
-		web.SetSuccessRedirect(w, r, "/webmaster", "You are now logged in")
+		web.SetSuccessRedirect(w, r, "/webmaster/gallery", "You are now logged in")
 		return
 	}
 	http.Redirect(w, r, "/", 303)

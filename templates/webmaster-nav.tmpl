@@ -1,7 +1,5 @@
-
 <nav class="navbar navbar-default">
-    <div
-        <!-- Brand and toggle get grouped for better mobile display -->
+    <div>
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
@@ -11,18 +9,17 @@
             </button>
             <a class="navbar-brand"><div id="pageName">{{ title .page }}</div><div class="visible-lg hidden-md hidden-sm hidden-xs" id="pageName2"></div></a>
         </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="{{ if eq .page "webmaster"}}active{{ end }}"><a href="/webmaster">Webmaster</a></li>
-                <li class="{{ if eq .page "listings"}}active{{ end }}"><a href="/webmaster/all-listings">Listings</a></li>
+                <li class="{{ if eq .page "webmaster"}}active{{ end }}"><a href="/webmaster/gallery">Webmaster</a></li>
+                <li class="{{ if eq .page "listings"}}active{{ end }}"><a href="/webmaster/listing">Listings</a></li>
                 <li class="{{ if eq .page "floorplans"}}active{{ end }}"><a href="/webmaster/floorplans">Floorplans</a></li>
                 <li><a id="cancel" href="/logout"> Logout </a></li>
             </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
+        </div>
+    </div>
 </nav>
+
 <!-- delete object alert -->
 <div id="deleteAlert" class="alert alert-danger clearfix hide">
     <form id="deleteForm" action="" method="post" class="col-lg-2">
@@ -31,20 +28,22 @@
     </form>
     <span id="message"></span>
 </div>
+<!-- delete object alert -->
+
 <!-- other alerts -->
 {{ if .alert }}
-<div class="alert alert-info alert-dismissable">
-    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    {{ .alert }}
-</div>
+    <div class="alert alert-info alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        {{ .alert }}
+    </div>
 {{ else if .alertError }}
-<div class="alert alert-danger alert-dismissable">
-    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    {{ .alertError }}
-</div>
+    <div class="alert alert-danger alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        {{ .alertError }}
+    </div>
 {{ else if .alertSuccess }}
-<div class="alert alert-success alert-dismissable">
-    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    {{ .alertSuccess }}
-</div>
+    <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        {{ .alertSuccess }}
+    </div>
 {{ end }}

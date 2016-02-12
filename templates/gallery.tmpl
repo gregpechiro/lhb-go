@@ -2,14 +2,20 @@
 <html>
 	<head>
 		<title>Gallery | Lancaster Home Builders PA Home Construction</title>
-		<meta name="format-detection" content="telephone=no" />
+
 		{{ template "head.tmpl" . }}
+
 		<link rel="stylesheet" href="/static/css/blueimp-gallery.min.css">
 		<link rel="stylesheet" href="/static/css/bootstrap-image-gallery.min.css">
 	</head>
 	<body>
 		<div class="container">
+
+			<!-- navbar -->
 			{{ template "navbar.tmpl" . }}
+			<!-- navbar -->
+
+			<!-- categories -->
 			<div class="row">
 				<div class="col-xs-12">
 					<button style="margin-bottom:5px" class="filter btn btn-dark active" data-filter="*">Show All</button>
@@ -19,7 +25,11 @@
 					<strong>Check out our floor plans <a href="/floor-plans">Here</a>!</strong>
 				</div>
 			</div>
+			<!-- categories -->
+
 			<br>
+
+			<!-- images -->
 			<div class="row">
 				<div id="links" class="isotope">
 					{{ range $image := .images }}
@@ -31,37 +41,38 @@
 					{{ end }}
 				</div>
 			</div>
+			<!-- images -->
+
+			<!-- footer -->
 			{{ template "footer.tmpl" . }}
-			<div id="blueimp-gallery" class="blueimp-gallery" data-use-bootstrap-modal="false">
-    			<div class="slides"></div>
-    			<h3 class="title"></h3>
-    			<a class="close">×</a>
-    			<div class="modal fade">
-        			<div class="modal-dialog">
-            			<div class="modal-content">
-                			<div class="modal-header">
-                    			<button type="button" class="close" aria-hidden="true">&times;</button>
-                    			<h4 class="modal-title"></h4>
-                			</div>
-                			<div class="modal-body next"></div>
-                			<div class="modal-footer">
-                    			<button type="button" class="btn btn-default pull-left prev">
-                        			<i class="glyphicon glyphicon-chevron-left"></i>
-                        			Previous
-                    			</button>
-                    			<button type="button" class="btn btn-primary next">
-                        			Next
-                        			<i class="glyphicon glyphicon-chevron-right"></i>
-                    			</button>
-                			</div>
+			<!-- footer -->
+
+		</div>
+
+		<!-- image modal -->
+		<div id="blueimp-gallery" class="blueimp-gallery" data-use-bootstrap-modal="false">
+			<div class="slides"></div>
+			<h3 class="title"></h3>
+			<a class="close">×</a>
+			<div class="modal fade">
+    			<div class="modal-dialog">
+        			<div class="modal-content">
+            			<div class="modal-header">
+                			<button type="button" class="close" aria-hidden="true">&times;</button>
+                			<h4 class="modal-title"></h4>
             			</div>
+            			<div class="modal-body"></div>
         			</div>
     			</div>
 			</div>
 		</div>
+		<!-- image modal -->
 
+		<!-- footer -->
 		{{ template "scripts.tmpl" . }}
+		<!-- footer -->
 
+		<!-- javascript -->
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.1/isotope.pkgd.min.js"></script>
 		<script type="text/javascript">
 		var quotes = [
@@ -70,8 +81,11 @@
 			'We\'re looking forward to closing on our new home (a week ahead of schedule) and know that we will be very happy raising our family there for many years to come!'
 		];
 		</script>
+		<script src="/static/js/quote.js" charset="utf-8"></script>
 		<script src="/static/js/jquery.blueimp-gallery.min.js"></script>
 		<script src="/static/js/bootstrap-image-gallery.min.js"></script>
 		<script src="/static/js/gallery.js" charset="utf-8"></script>
+		<!-- javascript -->
+
 	</body>
 </html>

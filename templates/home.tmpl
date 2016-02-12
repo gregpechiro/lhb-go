@@ -2,103 +2,49 @@
 <html>
 	<head>
 		<title>Home | Lancaster Home Builders PA Home Construction</title>
+
 		{{ template "head.tmpl" . }}
-		<style>
-			.carousel-caption {
-				padding-bottom: 0px;
-				text-align: left;
-				left: 0%;
-			}
-		</style>
+
+		<style>.carousel-caption {padding-bottom: 0px;text-align: left;left: 0%;}</style>
 	</head>
 	<body>
 		<div id="container" class="container">
+
+			<!-- navbar -->
 			{{ template "navbar.tmpl" . }}
+			<!-- navbar -->
+
+			<!-- carousel -->
 			<div id="carousel-example-generic" class="carousel slide carousel-border" data-ride="carousel">
-			  <!-- Indicators -->
+
+				<!-- Indicators -->
 				<ol class="carousel-indicators hidden-xs">
 					<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
 					<li data-target="#carousel-example-generic" data-slide-to="1"></li>
 					<li data-target="#carousel-example-generic" data-slide-to="2"></li>
 					<li data-target="#carousel-example-generic" data-slide-to="3"></li>
 				</ol>
-				<!-- Wrapper for slides -->
+				<!-- indicators -->
+
+				<!-- slides -->
 				<div class="carousel-inner" role="listbox">
 					<div class="item active">
 						<img src="/static/img/lhbImages/homeSlider/office.jpg" alt="...">
-						<div style="top:0px" class="carousel-caption col-xs-offset-7 col-xs-5">
-							<!--
-							<div class="caption text-center">
-								<div class="caption-body">
-									<h4 class="hidden-xs border-bot-green">LANCASTER HOME BUILDERS</h4>
-									<h4 class="visible-xs">Lancaster Home Builders</h4>
-								</div>
-								<div class="caption-body hidden-xs">
-									<p
-										2760 Charlestown Rd. Lancaster, PA 17603 <br>
-										Building for your future!
-									</p>
-								</div>
-							</div>
-							 -->
-						</div>
 					</div>
 					<div class="item">
 						<img src="/static/img/lhbImages/homeSlider/SYP_1781-2-2.jpg" alt="...">
-						<div style="top:0px" class="carousel-caption col-xs-offset-7 col-xs-5">
-							<!--
-							<div class="caption text-center">
-								<div class="caption-body">
-									<h4 class="hidden-xs border-bot-green">NEW HOME CONSTRUCTION</h4>
-									<h4 class="visible-xs">New Home Construction</h4>
-								</div>
-								<div class="caption-body">
-									<p class="hidden-xs">
-										We have the experience, personel and resources to make the project run smoothly.
-										We can ensure a job is done on time.
-									</p>
-								</div>
-							</div>
-							 -->
-						</div>
+						<div style="top:0px" class="carousel-caption col-xs-offset-7 col-xs-5"></div>
 					</div>
 					<div class="item">
 						<img src="/static/img/lhbImages/homeSlider/IMG_7303-slider.jpg" alt="...">
-						<div style="top:0px" class="carousel-caption col-xs-offset-7 col-xs-5">
-							<!--
-							<div class="caption text-center border-bot-green">
-								<div class="caption-body">
-									<h4 class="hidden-xs border-bot-green">PROFESSIONAL DESIGN</h4>
-									<h4 class="visible-xs">Professional Design</h4>
-								</div>
-								<div class="caption-body">
-									<p class="hidden-xs">
-										We combine quality workmanship, superior knowledge and low prices to provide
-										you with service unmatched by our competitors.
-									</p>
-								</div>
-							</div>
-							-->
-						</div>
 					</div>
 					<div class="item">
 						<img src="/static/img/lhbImages/homeSlider/IMG_7321-slider.jpg" alt="...">
-						<div style="top:0px" class="carousel-caption col-xs-offset-7 col-xs-5">
-							<!--
-							<div class="caption text-center">
-								<div class="caption-body">
-									<h4 class="hidden-xs border-bot-green"><?php echo strtoupper($slide['title'])?></h4>
-									<h4 class="visible-xs"><?php echo $slide['title']?></h4>
-								</div>
-								<div class="caption-body">
-									<p class="hidden-xs"><?php echo $slide['body']?></p>
-								</div>
-							</div>
-						 	-->
-						</div>
 					</div>
 				</div>
-				<!-- Controls -->
+				<!-- slides -->
+
+				<!-- controls -->
 				<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
 					<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 					<span class="sr-only">Previous</span>
@@ -107,10 +53,18 @@
 					<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 					<span class="sr-only">Next</span>
 				</a>
+				<!-- controls -->
+
 			</div>
+			<!-- carousel -->
+
+			<!-- footer -->
 			{{ template "footer.tmpl" . }}
+			<!-- footer -->
+
 		</div>
 
+		<!-- javascript -->
 		{{ template "scripts.tmpl" . }}
 
 		<script type="text/javascript">
@@ -120,5 +74,7 @@
 			];
 		</script>
 		<script src="/static/js/quote.js" charset="utf-8"></script>
+		<!-- javascript -->
+
 	</body>
 </html>

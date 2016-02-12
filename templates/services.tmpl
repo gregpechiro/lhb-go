@@ -2,14 +2,24 @@
 <html>
 	<head>
 		<title>Services | Lancaster Home Builders PA Home Construction</title>
+
 		{{ template "head.tmpl" . }}
+
 	</head>
 	<body>
 		<div class="container">
+
+			<!-- navbar -->
 			{{ template "navbar.tmpl" . }}
+			<!-- navbar -->
+
 			<div class="row">
+
+				<!-- what you'll get -->
 				<div class="col-md-3">
 					<h1 class="no-margin-top text-center border-bottom text-green">What You'll Get</h1>
+
+					<!-- hidden small -->
 					<div class="hidden-sm">
 						<p><i class="fa fa-check"></i> Superior Quality and Craftsmanship</p>
 						<p><i class="fa fa-check"></i> Highest Standards to the Projects We Deliver</p>
@@ -27,6 +37,9 @@
 							<li>York</li>
 						</ul>
 					</div>
+					<!-- hidden small -->
+
+					<!-- visible small -->
 					<div class="visible-sm">
 						<div class="col-sm-6">
 							<p><i class="fa fa-check"></i> Financial Responsibility to Our Clients</p>
@@ -50,9 +63,17 @@
 							</ul>
 						</div>
 					</div>
+					<!-- visible small -->
+
 				</div>
+				<!-- what you'll get -->
+
 				<div class="col-xs-12 border-bottom visible-xs visible-sm"></div>
+
+				<!-- services -->
 				<div class="col-md-9 col-xs-12">
+
+					<!-- new construction -->
 					<div class="row">
 						<div class="col-sm-4">
 							<h2 class="visible-xs margin-bottom text-underline no-margin-top text-green text-center">New Home Construction</h2>
@@ -82,10 +103,14 @@
 							</p>
 						</div>
 					</div>
+					<!-- new construction -->
+
 					<br>
 					<div class="border-bottom"></div>
 					<br>
 					<div class="col-xs-10 col-xs-offset-1">
+
+						<!-- excavating -->
 						<div class="row">
 							<div class="col-sm-4">
 								<h3 class="no-margin-top visible-xs text-center text-green">Nadu Excavating</h3>
@@ -103,7 +128,11 @@
 								</p>
 							</div>
 						</div>
+						<!-- excavation -->
+
 						<br>
+
+						<!-- plumbing -->
 						<div class="row">
 							<div class="col-sm-4">
 								<h3 class="no-margin-top text-center text-green visible-xs">Plumbing</h3>
@@ -120,12 +149,21 @@
 								</p>
 							</div>
 						</div>
+						<!-- plumbing -->
+
 					</div>
 				</div>
+				<!-- services -->
+
 			</div>
+
+			<!-- footer -->
 			{{ template "footer.tmpl" . }}
+			<!-- footer -->
+
         </div>
 
+		<!-- javascript -->
 		{{ template "scripts.tmpl" . }}
 
 		<script type="text/javascript">
@@ -135,5 +173,7 @@
 			];
 		</script>
 		<script src="/static/js/quote.js" charset="utf-8"></script>
+		<!-- javascript -->
+
     </body>
 </html>

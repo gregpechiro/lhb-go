@@ -2,28 +2,33 @@
 <html>
 	<head>
 		<title>LHB |  - Construction Renovation Template</title>
+
 		{{ template "head.tmpl" . }}
-		<style>input.uploader{position:absolute;left:-9999px;}label.uploader{cursor:pointer;}</style>
-		<style>
-			.form-horizontal .control-label {
-				text-align: left;
-			}
-		</style>
+
+		<style>input.uploader{position:absolute;left:-9999px;}label.uploader{cursor:pointer;}.form-horizontal .control-label {text-align: left;}</style>
 	</head>
 	<body>
 		<div class="container-fluid">
+
+			<!-- navbar -->
 			{{ template "webmaster-nav.tmpl" . }}
+			<!-- navbar -->
+
 			<div class="row">
+
+				<!-- image form -->
 				<div style="padding:0"  class="col-md-4 col-xs-12 text-black">
 					<div class="col-md-12 col-sm-6">
 						<div style="border:1px solid #532d3a" class="panel">
 							<div style="background-color:#532d3a; color:white;" class="panel-heading clearfix">
 								Gallery
-								<a href="/webmaster" class="pull-right" style="color:white;">Cancel</a>
+								<a href="/webmaster/gallery" class="pull-right" style="color:white;">Cancel</a>
 							</div>
 							<div class="panel-body">
 								{{ if .image }}
-									<form action="/save-image/{{ .image.Id }}" method="post" class="form-horizontal">
+
+									<!-- edit image -->
+									<form action="/webmaster/save/{{ .image.Id }}" method="post" class="form-horizontal">
 										<div class="form-group">
 											<label class="control-label col-lg-3 col-md-4 col-sm-3 col-xs-4">Description:</label>
 											<div class="col-lg-9 col-md-8 col-sm-9 col-xs-8">
@@ -43,9 +48,13 @@
 											</div>
 										</div>
 									</form>
-									<a href="#" data-delete="/webmaster/{{ .image.Id }}" data-message="Are you sure you would like to permanently delete this image?" class="btn btn-danger btn-block delete-button">Delete</a>
+									<a href="#" data-delete="/webmaster/gallery/{{ .image.Id }}" data-message="Are you sure you would like to permanently delete this image?" class="btn btn-danger btn-block delete-button">Delete</a>
+									<!-- edit image -->
+
 								{{ else }}
-									<form action="/upload-image" method="post" id="uploader" class="form-horizontal" enctype="multipart/form-data">
+
+									<!-- edit image -->
+									<form action="/webmaster/gallery/upload" method="post" id="uploader" class="form-horizontal" enctype="multipart/form-data">
 										<div class="form-group">
 											<div class="col-xs-12">
 												<label class="btn btn-default btn-block uploader" for="file">Select Image</label>
@@ -66,36 +75,53 @@
 										</div>
 										<button class="btn btn-dark btn-block" id="upload">Upload</button>
 									</form>
+									<!-- edit image -->
+
 								{{ end }}
 							</div>
 						</div>
 					</div>
 				</div>
+				<!-- image form -->
+
+				<!-- gallery preview -->
 				<div class="col-md-8 col-xs-12">
 					<div class="text-center">
 						Gallery Preview
 					</div>
+
+					<!-- categories -->
 					<div class="col-xs-12">
 						<button style="margin-bottom:5px" class="filter btn btn-dark active" data-filter="*">Show All</button>
 						{{ range $cat := .cats }}
 							<button style="margin-right:4px;margin-bottom:5px;" class="filter btn btn-dark" data-filter=".{{ $cat | snake }}">{{ $cat }}</button>
 						{{ end }}
 					</div>
+					<!-- categories -->
+
 				</div>
 				<br>
+
+				<!-- images -->
 				<div class="col-md-8 col-xs-12">
 					<div class="isotope">
 						{{ range $image := .images }}
 							<div class="col-lg-3 col-md-3 col-sm-3 item {{ $image.Data.category | snake }}">
-								<a href="/webmaster/{{ $image.Id }}">
+								<a href="/webmaster/gallery/{{ $image.Id }}">
 									<img style="margin-bottom:10px" class="img-responsive" src="/static/img/upload/{{ $image.Data.source }}" alt="img">
 								</a>
 							</div>
 						{{ end }}
 					</div>
 				</div>
+				<!-- images -->
+
 			</div>
+			<!-- gallery preview -->
+
 		</div>
+
+		<!-- javascript -->
 		<script src="//code.jquery.com/jquery-2.1.4.min.js" charset="utf-8"></script>
 		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
@@ -103,5 +129,7 @@
 		<script src="/static/js/gallery.js" charset="utf-8"></script>
 		<script src="/static/js/delete.js" charset="utf-8"></script>
 		<script src="/static/js/upload.js" charset="utf-8"></script>
+		<!-- javascript -->
+
     </body>
 </html>

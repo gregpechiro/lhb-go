@@ -2,19 +2,29 @@
 <html>
 	<head>
 		<title>LHB |  - Real Estate Listings</title>
+
 		{{ template "head.tmpl" . }}
+
 		<link rel="stylesheet" href="/static/css/data-table-bootstrap.css">
 	</head>
 	<body>
 		<div class="container-fluid">
+
+			<!-- navbar -->
 			{{ template "webmaster-nav.tmpl" . }}
+			<!-- navbar -->
+
 			<div class="row">
+
+				<!-- listing form -->
 				<div class="col-md-4 text-black">
 					<div style="border:1px solid #532d3a" class="panel">
-						<div style="background-color:#532d3a; color:white;" class="panel-heading">Gallery</div>
+						<div style="background-color:#532d3a; color:white;" class="panel-heading">Listing</div>
 						<div class="panel-body">
 							{{ if .listing }}
-								<form action="/webmaster/save-listing/{{ .listing.Id }}" method="post" class="form-horizontal">
+
+								<!-- edit listing -->
+								<form action="/webmaster/listing/save/{{ .listing.Id }}" method="post" class="form-horizontal">
 									<div class="form-group">
 										<label class="control-label col-xs-3">Street:</label>
 										<div class="col-xs-9">
@@ -64,9 +74,13 @@
 										</div>
 									</div>
 								</form>
-								<a href="#" data-delete="/webmaster/all-listing/{{ .listing.Id }}" data-message="Are you sure you would like to permanently delete this listing?" class="btn btn-danger btn-block delete-button">Delete</a>
+								<a href="#" data-delete="/webmaster/listing/{{ .listing.Id }}" data-message="Are you sure you would like to permanently delete this listing?" class="btn btn-danger btn-block delete-button">Delete</a>
+								<!-- edit listing -->
+
 							{{ else }}
-								<form action="/webmaster/save-listing" method="post" class="form-horizontal">
+
+								<!-- add listing -->
+								<form action="/webmaster/listing/add" method="post" class="form-horizontal">
 									<div class="form-group">
 										<label class="control-label col-xs-3">Street:</label>
 										<div class="col-xs-9">
@@ -111,10 +125,15 @@
 									</div>
 									<button class="btn btn-dark btn-block">Save</button>
 								</form>
+								<!-- add listing -->
+
 							{{ end }}
 						</div>
 					</div>
 				</div>
+				<!-- listing form -->
+
+				<!-- listings -->
                 <div class="col-md-8">
                     <table id="listings" class="table table-striped table-bordered" style="background: white;">
                         <thead>
@@ -133,26 +152,25 @@
         						    <td>{{ $listing.Data.mls }}</td>
                                     <td>{{ $listing.Data.agent }}</td>
 									<td>{{ $listing.Data.phone }}</td>
-                                    <td><a href="/webmaster/all-listings/{{ $listing.Id }}" class="btn btn-dark btn-sm">Edit</a></td>
+                                    <td><a href="/webmaster/listing/{{ $listing.Id }}" class="btn btn-dark btn-sm">Edit</a></td>
                                 </tr>
 							{{ end }}
                         </tbody>
                     </table>
                 </div>
+				<!-- listings -->
+
 			</div>
 		</div>
 
+		<!-- javascript -->
 		<script src="//code.jquery.com/jquery-2.1.4.min.js" charset="utf-8"></script>
 		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/datatables/1.10.7/js/jquery.dataTables.min.js"></script>
 		<script src="/static/js/data-table-bootstrap.js"></script>
 		<script src="/static/js/delete.js" charset="utf-8"></script>
-		<script type="text/javascript">
-			$(document).ready(function() {
-				$('#listings').DataTable({
-					lengthMenu:[5,10,20]
-				});
-			});
-		</script>
-    </body>
+		<script type="text/javascript">$(document).ready(function(){$('#listings').DataTable({lengthMenu:[5,10,20],"columnDefs":[{"orderable":false,"targets":[4]}]});});</script>
+		<!-- javascript -->
+
+	</body>
 </html>

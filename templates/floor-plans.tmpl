@@ -2,11 +2,18 @@
 <html>
 	<head>
 		<title>Home | Lancaster Home Builders PA Home Construction</title>
+
 		{{ template "head.tmpl" . }}
+
 	</head>
 	<body>
 		<div id="container" class="container">
+
+			<!-- navbar -->
 			{{ template "navbar.tmpl" . }}
+			<!-- navbar -->
+
+			<!-- floor plans -->
 			<h2 class="text-green text-underline text-center">New Home Brochures</h2>
 			<br>
 			<div class="row">
@@ -18,9 +25,15 @@
 					</div>
 				{{ end }}
 			</div>
+			<!-- floor plans -->
+
+			<!-- footer -->
 			{{ template "footer.tmpl" . }}
+			<!-- footer -->
+
 		</div>
 
+		<!-- floor plan modal -->
 		<div id="floorplan-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="brochure-modal-title">
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
@@ -36,7 +49,9 @@
 				</div>
 			</div>
 		</div>
+		<!-- floorplan modal -->
 
+		<!-- javascript -->
 		{{ template "scripts.tmpl" . }}
 
 		<script type="text/javascript">
@@ -48,5 +63,7 @@
 		</script>
 		<script src="/static/js/quote.js" charset="utf-8"></script>
         <script src="/static/js/floorplans.js" charset="utf-8"></script>
+		<!-- javasctipt -->
+
 	</body>
 </html>

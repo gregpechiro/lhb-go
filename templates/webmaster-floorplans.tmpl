@@ -2,18 +2,21 @@
 <html>
 	<head>
 		<title>LHB |  - Construction Renovation Template</title>
+
 		{{ template "head.tmpl" . }}
-		<style>input.uploader{position:absolute;left:-9999px;}label.uploader{cursor:pointer;}</style>
-		<style>
-			.form-horizontal .control-label {
-				text-align: left;
-			}
-		</style>
+
+		<style>input.uploader{position:absolute;left:-9999px;}label.uploader{cursor:pointer;}.form-horizontal .control-label {text-align: left;}</style>
 	</head>
 	<body>
 		<div class="container-fluid">
+
+			<!-- navbar -->
 			{{ template "webmaster-nav.tmpl" . }}
+			<!-- navbar -->
+
 			<div class="row">
+
+				<!-- new floorplan -->
 				<div style="padding:0"  class="col-md-4 col-xs-12 text-black">
 					<div class="col-md-12 col-sm-6">
 						<div style="border:1px solid #532d3a" class="panel">
@@ -41,6 +44,7 @@
 						</div>
 					</div>
 				</div>
+				<!-- new floorplan -->
 
 				<div class="col-md-8 col-xs-12">
 					<div class="text-center">
@@ -49,11 +53,15 @@
 				</div>
 				<br>
 				<div class="col-md-8 col-xs-12">
+					
+					<!-- floorplans -->
 					{{ range $fp := .floorplans}}
                         <div class="col-md-4 text-center">
                             <div class="well well-sm" style="margin-bottom: 5px;">
                                 <strong><a class="floorplan" data-title="{{ split $fp "." 0 }}" data-type="{{ split $fp "." 1 }}" data-body="/static/floorplans/{{ $fp }}" style="cursor: pointer">{{ split $fp "." 0 }}</a></strong>
                             </div>
+
+							<!-- edit floorplan -->
                             <form action="/webmaster/floorplan/rename" method="post">
                                 <input class="form-control" type="text" name="name" value="{{ split $fp "." 0 }}">
                                 <input type="hidden" name="oldName" value="{{ $fp }}">
@@ -66,12 +74,17 @@
                                     </div>
                                 </div>
                             </form>
+							<!-- edit florplan -->
+
                         </div>
                     {{ end }}
+					<!-- floorplans -->
+
 				</div>
 			</div>
 		</div>
 
+		<!-- floorplan modal -->
         <div id="floorplan-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="brochure-modal-title">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -87,7 +100,9 @@
                 </div>
             </div>
         </div>
+		<!-- floorplan modal -->
 
+		<!-- javascript -->
 		<script src="//code.jquery.com/jquery-2.1.4.min.js" charset="utf-8"></script>
 		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 		<script src="/static/js/delete.js" charset="utf-8"></script>
@@ -98,5 +113,7 @@
             uploader.fileTypeErrorMsg = "Incorrect File type. Only PDF, JPEG, and PNG files";
             uploader.defaultText = "Select Floorplan";
         </script>
+		<!-- javascript -->
+
     </body>
 </html>
