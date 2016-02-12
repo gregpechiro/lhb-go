@@ -13,10 +13,10 @@ import (
 
 var webmaster = web.Route{"GET", "/webmaster/gallery", func(w http.ResponseWriter, r *http.Request) {
 	images := db.GetAll("image")
-	tmpl.Render(w, r, "webmaster.tmpl", web.Model{
+	tmpl.Render(w, r, "webmaster-gallery.tmpl", web.Model{
 		"images": images,
 		"cats":   getCategories(images),
-		"page":   "webmaster",
+		"page":   "gallery",
 	})
 	return
 }}
@@ -59,6 +59,17 @@ var uploadImage = web.Route{"POST", "/webmaster/gallery/upload", func(w http.Res
 	return
 }}
 
+var oneImage = web.Route{"GET", "/webmaster/gallery/:id", func(w http.ResponseWriter, r *http.Request) {
+	images := db.GetAll("image")
+	tmpl.Render(w, r, "webmaster-gallery.tmpl", web.Model{
+		"images": db.GetAll("image"),
+		"image":  db.Get("image", ParseId(r.FormValue(":id"))),
+		"cats":   getCategories(images),
+		"page":   "gallery",
+	})
+	return
+}}
+
 var saveImage = web.Route{"POST", "/webmaster/gallery/save/:id", func(w http.ResponseWriter, r *http.Request) {
 	id := ParseId(r.FormValue(":id"))
 	img := db.Get("image", id).Data
@@ -66,17 +77,6 @@ var saveImage = web.Route{"POST", "/webmaster/gallery/save/:id", func(w http.Res
 	img["description"] = r.FormValue("description")
 	db.Set("image", id, img)
 	web.SetSuccessRedirect(w, r, "/webmaster/gallery", "Successfully saved image")
-	return
-}}
-
-var oneImage = web.Route{"GET", "/webmaster/gallery/:id", func(w http.ResponseWriter, r *http.Request) {
-	images := db.GetAll("image")
-	tmpl.Render(w, r, "webmaster.tmpl", web.Model{
-		"images": db.GetAll("image"),
-		"image":  db.Get("image", ParseId(r.FormValue(":id"))),
-		"cats":   getCategories(images),
-		"page":   "webmaster",
-	})
 	return
 }}
 
@@ -98,17 +98,8 @@ var deleteImage = web.Route{"POST", "/webmaster/gallery/:id", func(w http.Respon
 }}
 
 var allListings = web.Route{"GET", "/webmaster/listing", func(w http.ResponseWriter, r *http.Request) {
-	tmpl.Render(w, r, "webmaster-all-listings.tmpl", web.Model{
+	tmpl.Render(w, r, "webmaster-listing.tmpl", web.Model{
 		"listings": db.GetAll("listing"),
-		"page":     "listings",
-	})
-	return
-}}
-
-var oneListing = web.Route{"GET", "/webmaster/listing/:id", func(w http.ResponseWriter, r *http.Request) {
-	tmpl.Render(w, r, "webmaster-all-listings.tmpl", web.Model{
-		"listings": db.GetAll("listing"),
-		"listing":  db.Get("listing", ParseId(r.FormValue(":id"))),
 		"page":     "listings",
 	})
 	return
@@ -126,6 +117,15 @@ var addListing = web.Route{"POST", "/webmaster/listing/add", func(w http.Respons
 	}
 	db.Add("listing", listing)
 	web.SetSuccessRedirect(w, r, "/webmaster/listing", "Successfuly added listing")
+	return
+}}
+
+var oneListing = web.Route{"GET", "/webmaster/listing/:id", func(w http.ResponseWriter, r *http.Request) {
+	tmpl.Render(w, r, "webmaster-listing.tmpl", web.Model{
+		"listings": db.GetAll("listing"),
+		"listing":  db.Get("listing", ParseId(r.FormValue(":id"))),
+		"page":     "listings",
+	})
 	return
 }}
 
@@ -150,26 +150,26 @@ var deleteListing = web.Route{"POST", "/webmaster/listing/:id", func(w http.Resp
 	return
 }}
 
-var allFloorplans = web.Route{"GET", "/webmaster/floorplans", func(w http.ResponseWriter, r *http.Request) {
-	tmpl.Render(w, r, "webmaster-floorplans.tmpl", web.Model{
+var allFloorplans = web.Route{"GET", "/webmaster/floorplan", func(w http.ResponseWriter, r *http.Request) {
+	tmpl.Render(w, r, "webmaster-floorplan.tmpl", web.Model{
 		"floorplans": GetFloorPlans(),
 		"page":       "floorplans",
 	})
 	return
 }}
 
-var uploadFloorplan = web.Route{"POST", "/webmaster/upload-floorplan", func(w http.ResponseWriter, r *http.Request) {
+var uploadFloorplan = web.Route{"POST", "/webmaster/floorplan/upload", func(w http.ResponseWriter, r *http.Request) {
 	path := "static/floorplans/"
 	if err := os.MkdirAll(path, 0755); err != nil {
 		fmt.Printf("uploadFloorplan >> MkdirAll: %v\n", err)
-		web.SetErrorRedirect(w, r, "/webmaster/floorplans", "Error uploading file")
+		web.SetErrorRedirect(w, r, "/webmaster/floorplan", "Error uploading file")
 		return
 	}
 	r.ParseMultipartForm(32 << 20) // 32 MB
 	file, handler, err := r.FormFile("floorplan")
 	if err != nil || len(handler.Header["Content-Type"]) < 1 {
 		fmt.Printf("uploadFloorplan >> Header len < 1: %v\n", err)
-		web.SetErrorRedirect(w, r, "/webmaster/floorplans", "Error uploading file")
+		web.SetErrorRedirect(w, r, "/webmaster/floorplan", "Error uploading file")
 		return
 	}
 	defer file.Close()
@@ -183,28 +183,18 @@ var uploadFloorplan = web.Route{"POST", "/webmaster/upload-floorplan", func(w ht
 		fileName += ".pdf"
 	} else {
 		fmt.Printf("uploadFloorplan >> Header[\"content-type\"] != png || jpeg || pdf: content-type is: %s\n", contentType)
-		web.SetErrorRedirect(w, r, "/webmaster/floorplans", "Error uploading file")
+		web.SetErrorRedirect(w, r, "/webmaster/floorplan", "Error uploading file")
 		return
 	}
 	f, err := os.OpenFile(path+fileName, os.O_WRONLY|os.O_CREATE, 0666)
 	if err != nil {
 		fmt.Printf("uploadFloorplan >> OpenFile: %v\n", err)
-		web.SetErrorRedirect(w, r, "/webmaster/floorplans", "Error uploading file")
+		web.SetErrorRedirect(w, r, "/webmaster/floorplan", "Error uploading file")
 		return
 	}
 	defer f.Close()
 	io.Copy(f, file)
-	web.SetSuccessRedirect(w, r, "/webmaster/floorplans", "Successfully uploaded image")
-	return
-}}
-
-var deleteFloorplan = web.Route{"POST", "/webmaster/floorplan/:name", func(w http.ResponseWriter, r *http.Request) {
-	err := os.Remove("static/floorplans/" + r.FormValue(":name"))
-	if err != nil {
-		web.SetErrorRedirect(w, r, "/webmaster/floorplans", "Error deleting floorplan")
-		return
-	}
-	web.SetSuccessRedirect(w, r, "/webmaster/floorplans", "Successfully deleted floorplan")
+	web.SetSuccessRedirect(w, r, "/webmaster/floorplan", "Successfully uploaded image")
 	return
 }}
 
@@ -212,10 +202,20 @@ var renameFloorplan = web.Route{"POST", "/webmaster/floorplan/rename", func(w ht
 	ext := "." + strings.Split(r.FormValue("oldName"), ".")[1]
 	err := os.Rename("static/floorplans/"+r.FormValue("oldName"), "static/floorplans/"+r.FormValue("name")+ext)
 	if err != nil {
-		web.SetErrorRedirect(w, r, "/webmaster/floorplans", "Error renaming floorplan")
+		web.SetErrorRedirect(w, r, "/webmaster/floorplan", "Error renaming floorplan")
 		return
 	}
-	web.SetSuccessRedirect(w, r, "/webmaster/floorplans", "Successfully renamed floorplan")
+	web.SetSuccessRedirect(w, r, "/webmaster/floorplan", "Successfully renamed floorplan")
 	return
 
+}}
+
+var deleteFloorplan = web.Route{"POST", "/webmaster/floorplan/:name", func(w http.ResponseWriter, r *http.Request) {
+	err := os.Remove("static/floorplans/" + r.FormValue(":name"))
+	if err != nil {
+		web.SetErrorRedirect(w, r, "/webmaster/floorplan", "Error deleting floorplan")
+		return
+	}
+	web.SetSuccessRedirect(w, r, "/webmaster/floorplan", "Successfully deleted floorplan")
+	return
 }}
