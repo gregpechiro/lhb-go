@@ -34,8 +34,8 @@
 				<div id="links" class="isotope">
 					{{ range $image := .images }}
 						<div class="col-lg-3 col-md-3 col-sm-4 item {{ $image.Data.category | snake }}">
-							<a href="/static/img/upload/{{ $image.Data.source }}" id="{{ $image.Id }}" title="{{ $image.Data.description }}" data-gallery>
-								<img style="margin-bottom:10px" class="img-responsive" src="/static/img/upload/{{ $image.Data.source }}" alt="img">
+							<a href="/file/gallery/{{ $image.Data.source }}" id="{{ $image.Id }}" title="{{ $image.Data.description }}" data-gallery>
+								<img style="margin-bottom:10px" class="img-responsive" src="/file/gallery/{{ $image.Data.source }}" alt="img">
 							</a>
 						</div>
 					{{ end }}

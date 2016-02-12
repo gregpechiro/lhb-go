@@ -20,7 +20,7 @@
 				{{ range $fp := .floorplans}}
 					<div class="col-md-3 text-center">
 						<div class="well well-sm clearfix">
-							<strong><a class="floorplan" data-title="{{ split $fp "." 0 }}" data-type="{{ split $fp "." 1 }}" data-body="/static/floorplans/{{ $fp }}" style="cursor: pointer">{{ split $fp "." 0 }}</a></strong>
+							<strong><a class="floorplan" data-title="{{ split $fp "." 0 }}" data-type="{{ split $fp "." 1 }}" data-body="/file/floorplans/{{ $fp }}" style="cursor: pointer">{{ split $fp "." 0 }}</a></strong>
 						</div>
 					</div>
 				{{ end }}

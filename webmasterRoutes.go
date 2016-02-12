@@ -22,7 +22,7 @@ var webmaster = web.Route{"GET", "/webmaster/gallery", func(w http.ResponseWrite
 }}
 
 var uploadImage = web.Route{"POST", "/webmaster/gallery/upload", func(w http.ResponseWriter, r *http.Request) {
-	path := "static/img/upload/"
+	path := "upload/gallery/"
 	if err := os.MkdirAll(path, 0755); err != nil {
 		fmt.Printf("uploadImage >> MkdirAll: %v\n", err)
 		web.SetErrorRedirect(w, r, "/webmaster/gallery", "Error uploading file")

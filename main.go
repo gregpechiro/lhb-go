@@ -34,7 +34,7 @@ func init() {
 
 func main() {
 
-	mux.AddRoutes(home, gallery, about, contact, services, listings, floorPlans, login, logout)
+	mux.AddRoutes(home, gallery, about, contact, services, listings, floorPlans, login, logout, serveFiles)
 
 	mux.AddSecureRoutes(WEBMASTER, allFloorplans, uploadFloorplan, renameFloorplan, deleteFloorplan)
 
@@ -105,6 +105,11 @@ var logout = web.Route{"GET", "/logout", func(w http.ResponseWriter, r *http.Req
 	return
 }}
 
+var serveFiles = web.Route{"GET", "/file/:folder/:fileName", func(w http.ResponseWriter, r *http.Request) {
+	server := http.StripPrefix("/file/", http.FileServer(http.Dir("upload")))
+	server.ServeHTTP(w, r)
+}}
+
 func ParseId(v interface{}) float64 {
 	var id float64
 	var err error
@@ -141,7 +146,7 @@ func getCategories(images []*dbdb.Doc) []string {
 
 func GetFloorPlans() []string {
 	var fp []string
-	filepath.Walk("static/floorplans", func(path string, info os.FileInfo, err error) error {
+	filepath.Walk("upload/floorplans", func(path string, info os.FileInfo, err error) error {
 		if err != nil {
 			return err
 		}

@@ -108,7 +108,7 @@
 						{{ range $image := .images }}
 							<div class="col-lg-3 col-md-3 col-sm-3 item {{ $image.Data.category | snake }}">
 								<a href="/webmaster/gallery/{{ $image.Id }}">
-									<img style="margin-bottom:10px" class="img-responsive" src="/static/img/upload/{{ $image.Data.source }}" alt="img">
+									<img style="margin-bottom:10px" class="img-responsive" src="/file/gallery/{{ $image.Data.source }}" alt="img">
 								</a>
 							</div>
 						{{ end }}
