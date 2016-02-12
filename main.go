@@ -75,15 +75,15 @@ var services = web.Route{"GET", "/services", func(w http.ResponseWriter, r *http
 	return
 }}
 
-var listings = web.Route{"GET", "/listings", func(w http.ResponseWriter, r *http.Request) {
-	tmpl.Render(w, r, "listings.tmpl", web.Model{
+var listings = web.Route{"GET", "/listing", func(w http.ResponseWriter, r *http.Request) {
+	tmpl.Render(w, r, "listing.tmpl", web.Model{
 		"listings": db.GetAll("listing"),
 	})
 	return
 }}
 
-var floorPlans = web.Route{"GET", "/floor-plans", func(w http.ResponseWriter, r *http.Request) {
-	tmpl.Render(w, r, "floor-plans.tmpl", web.Model{
+var floorPlans = web.Route{"GET", "/floorplan", func(w http.ResponseWriter, r *http.Request) {
+	tmpl.Render(w, r, "floorplan.tmpl", web.Model{
 		"floorplans": GetFloorPlans(),
 	})
 	return
