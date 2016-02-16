@@ -3,7 +3,7 @@
 clear
 NODE="$1"
 DIR=`echo ${PWD##*/}`
-EXCLUDE=(".git" ".gitignore" "db" "upload" "deploy.sh")
+EXCLUDE=(".git" ".gitignore" "db" "upload" "deploy.sh *.go")
 
 if [ "$NODE" == "" ]; then
     echo "No node specified!"

@@ -4,4 +4,6 @@
 # this should only be run on the server where the project lives right before
 # redeployment. It will remove all files that are contained in the new .tar
 
-rm -rf static/ templates/ auth.go main.go webmasterRoutes.go lhb-go lhb-go.tar
+DIR=`echo ${PWD##*/}`
+
+rm -rf static/ templates/ *.go ${DIR} ${DIR}.tar
