@@ -25,26 +25,26 @@ var uploadImage = web.Route{"POST", "/webmaster/gallery/upload", func(w http.Res
 	path := "upload/gallery/"
 	if err := os.MkdirAll(path, 0755); err != nil {
 		fmt.Printf("uploadImage >> MkdirAll: %v\n", err)
-		web.SetErrorRedirect(w, r, "/webmaster/gallery", "Error uploading file")
+		web.SetErrorRedirect(w, r, "/webmaster/gallery", "Error uploading image")
 		return
 	}
 	r.ParseMultipartForm(32 << 20) // 32 MB
 	file, handler, err := r.FormFile("picture")
 	if err != nil || len(handler.Header["Content-Type"]) < 1 {
 		fmt.Printf("uploadImage >> Header len < 1: %v\n", err)
-		web.SetErrorRedirect(w, r, "/webmaster/gallery", "Error uploading file")
+		web.SetErrorRedirect(w, r, "/webmaster/gallery", "Error uploading image")
 		return
 	}
 	defer file.Close()
 	if handler.Header["Content-Type"][0] != "image/png" && handler.Header["Content-Type"][0] != "image/jpeg" {
 		fmt.Printf("uploadImage >> Header != png || jpeg: %v\n", err)
-		web.SetErrorRedirect(w, r, "/webmaster/gallery", "Error uploading file")
+		web.SetErrorRedirect(w, r, "/webmaster/gallery", "Error uploading image")
 		return
 	}
 	f, err := os.OpenFile(path+handler.Filename, os.O_WRONLY|os.O_CREATE, 0666)
 	if err != nil {
 		fmt.Printf("uploadImage >> OpenFile: %v\n", err)
-		web.SetErrorRedirect(w, r, "/webmaster/gallery", "Error uploading file")
+		web.SetErrorRedirect(w, r, "/webmaster/gallery", "Error uploading image")
 		return
 	}
 	defer f.Close()
@@ -87,7 +87,7 @@ var deleteImage = web.Route{"POST", "/webmaster/gallery/:id", func(w http.Respon
 		web.SetErrorRedirect(w, r, "/webmaster/gallery", "Error deleting image.")
 		return
 	}
-	if err := os.Remove("static/img/upload/" + img.Data["source"].(string)); err != nil {
+	if err := os.Remove("upload/img/upload/" + img.Data["source"].(string)); err != nil {
 		log.Printf("webmasterDeleteImage >> os.Remove: %v\n", err)
 		web.SetErrorRedirect(w, r, "/webmaster/gallery", "Error deleting image.")
 		return
@@ -159,7 +159,7 @@ var allFloorplans = web.Route{"GET", "/webmaster/floorplan", func(w http.Respons
 }}
 
 var uploadFloorplan = web.Route{"POST", "/webmaster/floorplan/upload", func(w http.ResponseWriter, r *http.Request) {
-	path := "static/floorplans/"
+	path := "upload/floorplans/"
 	if err := os.MkdirAll(path, 0755); err != nil {
 		fmt.Printf("uploadFloorplan >> MkdirAll: %v\n", err)
 		web.SetErrorRedirect(w, r, "/webmaster/floorplan", "Error uploading file")
@@ -183,7 +183,7 @@ var uploadFloorplan = web.Route{"POST", "/webmaster/floorplan/upload", func(w ht
 		fileName += ".pdf"
 	} else {
 		fmt.Printf("uploadFloorplan >> Header[\"content-type\"] != png || jpeg || pdf: content-type is: %s\n", contentType)
-		web.SetErrorRedirect(w, r, "/webmaster/floorplan", "Error uploading file")
+		web.SetErrorRedirect(w, r, "/webmaster/floorplan", "Error uploading floorplan")
 		return
 	}
 	f, err := os.OpenFile(path+fileName, os.O_WRONLY|os.O_CREATE, 0666)
@@ -194,13 +194,13 @@ var uploadFloorplan = web.Route{"POST", "/webmaster/floorplan/upload", func(w ht
 	}
 	defer f.Close()
 	io.Copy(f, file)
-	web.SetSuccessRedirect(w, r, "/webmaster/floorplan", "Successfully uploaded image")
+	web.SetSuccessRedirect(w, r, "/webmaster/floorplan", "Successfully uploaded floorplan")
 	return
 }}
 
 var renameFloorplan = web.Route{"POST", "/webmaster/floorplan/rename", func(w http.ResponseWriter, r *http.Request) {
 	ext := "." + strings.Split(r.FormValue("oldName"), ".")[1]
-	err := os.Rename("static/floorplans/"+r.FormValue("oldName"), "static/floorplans/"+r.FormValue("name")+ext)
+	err := os.Rename("upload/floorplans/"+r.FormValue("oldName"), "upload/floorplans/"+r.FormValue("name")+ext)
 	if err != nil {
 		web.SetErrorRedirect(w, r, "/webmaster/floorplan", "Error renaming floorplan")
 		return
@@ -211,7 +211,7 @@ var renameFloorplan = web.Route{"POST", "/webmaster/floorplan/rename", func(w ht
 }}
 
 var deleteFloorplan = web.Route{"POST", "/webmaster/floorplan/:name", func(w http.ResponseWriter, r *http.Request) {
-	err := os.Remove("static/floorplans/" + r.FormValue(":name"))
+	err := os.Remove("upload/floorplans/" + r.FormValue(":name"))
 	if err != nil {
 		web.SetErrorRedirect(w, r, "/webmaster/floorplan", "Error deleting floorplan")
 		return
