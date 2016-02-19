@@ -87,7 +87,7 @@ var deleteImage = web.Route{"POST", "/webmaster/gallery/:id", func(w http.Respon
 		web.SetErrorRedirect(w, r, "/webmaster/gallery", "Error deleting image.")
 		return
 	}
-	if err := os.Remove("upload/img/upload/" + img.Data["source"].(string)); err != nil {
+	if err := os.Remove("upload/gallery/" + img.Data["source"].(string)); err != nil {
 		log.Printf("webmasterDeleteImage >> os.Remove: %v\n", err)
 		web.SetErrorRedirect(w, r, "/webmaster/gallery", "Error deleting image.")
 		return
