@@ -1,11 +1,5 @@
 #!/bin/bash
 
-# a script to remove old files and folders
-# this should only be run on the server where the project lives right before
-# redeployment. It will remove all files that are contained in the new .tar
-
-#!/bin/bash
-
 # a script to launch a go project after a tar has been transfered to the server
 # it will assume something like the name and location of the tar
 # and the project namein supervisor
